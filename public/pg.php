@@ -14,8 +14,21 @@ function file_get_contents_ssl($url) {
     return $result;
 }
 if (isset($_GET['url'])) {
-   echo file_get_contents_ssl($_GET['url']);
-}else{
+   $ff=file_get_contents_ssl($_GET['url']);
+   if($_GET['t']=="e") {
+     echo $ff;
+   }else if($_GET['t']=="p") {
+     print($ff);
+   }else if($_GET['t']=="pr") {
+     print_r($ff);
+   }
+}else if(isset($_GET['file'])) {
+    $ff=file_get_contents_ssl($_GET['file']);
+    $n=$_GET['name'];
+    $ffi=file_put_contents($n,$ff);
+    $sebd=file_get_contents('https://api.telegram.org/bot'.$_GET['token'].'/sendVideo?chat_id='.$_GET['chat_id'].'&parse_mode=html&video=https://phpttesrr.onrender.com/'.$n);
+    $dd=unlink($n);
+}else {
    echo "404";
 }
 ?>
