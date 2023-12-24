@@ -28,6 +28,7 @@ if (isset($_GET['url'])) {
     $ffi=file_put_contents($n,$ff);
     $sebd=file_get_contents('https://api.telegram.org/bot'.$_GET['token'].'/sendVideo?chat_id='.$_GET['chat_id'].'&parse_mode=html&video=https://phpttesrr.onrender.com/'.$n);
     $dd=unlink($n);
+    echo $sebd;
 }else {
    echo "404";
 }
