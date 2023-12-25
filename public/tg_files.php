@@ -3,13 +3,11 @@
   $j=json_decode($in,true);
   $M=$j['message'];$Uid=$M['from']['id'];
   $Mid=$M['message_id'];
-   $ret = new \stdClass;
-   $ret->chat_id=$Uid;
-   $ret->parse_mode="html";
-   $ret->reply_to_message_id=$Mid;
+   $ret='https://api.telegram.org/bot6906959412:AAFd2yMD7h6kDIUDSy7JkFOqKCYPeYtruxU/sendMessage?chat_id=-1002063159191&parse_mode=html';
   if(isset($M['video']){
-     $ret->text="video";
+     $ret.'&text=video';
    }else{
-     $ret->text="non text";
+     $ret.'&text=non v';
    }
+ $nb= file_get_contents($ret);
 ?>
