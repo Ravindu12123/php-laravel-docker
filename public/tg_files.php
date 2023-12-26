@@ -1,5 +1,8 @@
 <?php
   $in=file_get_contents("php://input");
+  $dataj='done_f.json';
+  $dats=file_get_contents($dataj);
+  $donefj=json_decode($dats,true);
   $j=json_decode($in,true);
   $cc='-1002063159191';
   $M=$j['message'];$Uid=$M['from']['id'];
@@ -9,9 +12,16 @@
 if($M['video']==null){
        $ret=$ret.'&text=send me a video file';
    }else{
+       if(array_search($M['video']['file_id'],$donefj['file_ids'])){
+           $ret=$ret.'&text=alredy done!&reply_to_message_id='.$Mid;
+       }else{
        $ret=$ret.'&text=done!&reply_to_message_id='.$Mid;
        $rett=$rett.'&video='.$M['video']['file_id'];
+       array_push($donefj['file_ids'],$M['video']['file_id']);
+       $donejj=json_encode($donefj);
+       file_put_contents($donejj);
    }
+}
  $nb= file_get_contents($ret);
  $nbb= file_get_contents($rett);
 ?>
