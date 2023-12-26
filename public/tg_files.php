@@ -14,14 +14,16 @@ if($M['video']==null){
    }else{
        if(array_search($M['video']['file_id'],$donefj['file_ids'])){
            $ret=$ret.'&text=alredy done!&reply_to_message_id='.$Mid;
+           $nb= file_get_contents($ret);
        }else{
        $ret=$ret.'&text=done!&reply_to_message_id='.$Mid;
        $rett=$rett.'&video='.$M['video']['file_id'];
        array_push($donefj['file_ids'],$M['video']['file_id']);
        $donejj=json_encode($donefj);
-       file_put_contents($donejj);
+       file_put_contents($dataj,$donejj);
+       $nb= file_get_contents($ret);
+       $nbb= file_get_contents($rett);
    }
 }
- $nb= file_get_contents($ret);
- $nbb= file_get_contents($rett);
+ 
 ?>
