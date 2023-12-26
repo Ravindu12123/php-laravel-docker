@@ -12,7 +12,7 @@
 if($M['video']==null){
        $ret=$ret.'&text=send me a video file';
    }else{
-       if(array_search($M['video']['file_id'],$donefj['file_ids'])==1){
+       if(in_array($M['video']['file_id'],$donefj['file_ids'])==1){
            $ret=$ret.'&text=alredy done!&reply_to_message_id='.$Mid;
            $nb= file_get_contents($ret);
        }else{
