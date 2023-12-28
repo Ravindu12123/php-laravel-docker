@@ -4,11 +4,12 @@
   $dats=file_get_contents($dataj);
   $donefj=json_decode($dats,true);
   $j=json_decode($in,true);
-  $cc='-1002063159191';
+  $cc='';//channel id
+  $botToken='';//bot token
   $M=$j['message'];$Uid=$M['from']['id'];
   $Mid=$M['message_id'];
-   $ret='https://api.telegram.org/bot6906959412:AAFd2yMD7h6kDIUDSy7JkFOqKCYPeYtruxU/sendMessage?chat_id='.$Uid.'&parse_mode=html';
-  $rett='https://api.telegram.org/bot6906959412:AAFd2yMD7h6kDIUDSy7JkFOqKCYPeYtruxU/sendVideo?chat_id='.$cc.'&parse_mode=html';
+   $ret='https://api.telegram.org/bot'.$botToken.'/sendMessage?chat_id='.$Uid.'&parse_mode=html';
+  $rett='https://api.telegram.org/bot'.$botToken.'/sendVideo?chat_id='.$cc.'&parse_mode=html';
 if($M['video']==null){
        $ret=$ret.'&text=send me a video file';
    }else{
