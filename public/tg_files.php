@@ -12,6 +12,7 @@
   $rett='https://api.telegram.org/bot'.$botToken.'/sendVideo?chat_id='.$cc.'&parse_mode=html';
 if($M['video']==null){
        $ret=$ret.'&text=send me a video file';
+    $gh=file_get_contents($ret);
    }else{
        $nfid=$M['video']['file_id'];$ffar=$donefj['file_ids'];
        if(in_array($nfid,$ffar,true)===true){
@@ -29,7 +30,7 @@ if($M['video']==null){
         $gh=file_get_contents($ret);
         }else{
             $ret=$ret.'&text=err!&reply_to_message_id='.$Mid;
-            $gh=file_get_contents($ret)
+            $gh=file_get_contents($ret);
         }
     
    }
