@@ -1,6 +1,7 @@
 <?php
   $in=file_get_contents("php://input");
   $dataj='done_f.json';
+  sleep(20);
   $dats=file_get_contents($dataj);
   $donefj=json_decode($dats,true);
   $j=json_decode($in,true);
@@ -31,7 +32,7 @@
             $ret=$ret.'&text=done!&reply_to_message_id='.$Mid;
             $gh=file_get_contents($ret);
         }else{
-            $ret=$ret.'&text=err!&reply_to_message_id='.$Mid;
+            $ret=$ret.'&text=err!'.$nbr['description'].'&reply_to_message_id='.$Mid;
             $gh=file_get_contents($ret);
         }
     }
