@@ -4,8 +4,8 @@
   $dats=file_get_contents($dataj);
   $donefj=json_decode($dats,true);
   $j=json_decode($in,true);
-  $cc='';//channel id
-  $botToken='';//bot token
+  $cc='-1002099678281';//channel id
+  $botToken='6906959412:AAFd2yMD7h6kDIUDSy7JkFOqKCYPeYtruxU';//bot token
   $M=$j['message'];$Uid=$M['from']['id'];
   $Mid=$M['message_id'];
    $ret='https://api.telegram.org/bot'.$botToken.'/sendMessage?chat_id='.$Uid.'&parse_mode=html';
@@ -14,17 +14,24 @@ if($M['video']==null){
        $ret=$ret.'&text=send me a video file';
    }else{
        $nfid=$M['video']['file_id'];$ffar=$donefj['file_ids'];
-       if(in_array($nfid,$ffar,TRUE)==TRUE){
+       if(in_array($nfid,$ffar,true)===true){
            $ret=$ret.'&text=alredy done!&reply_to_message_id='.$Mid;
            $nb= file_get_contents($ret);
        }else{
-       $ret=$ret.'&text=done!&reply_to_message_id='.$Mid;
        $rett=$rett.'&video='.$M['video']['file_id'];
-       array_push($donefj['file_ids'],$M['video']['file_id']);
+       $nb= file_get_contents($rett);
+        $nbr=json_decode($nb);
+        if($nbr['ok']==true){
+        array_push($donefj['file_ids'],$M['video']['file_id']);
        $donejj=json_encode($donefj);
        file_put_contents($dataj,$donejj);
-       $nb= file_get_contents($ret);
-       $nbb= file_get_contents($rett);
+       $ret=$ret.'&text=done!&reply_to_message_id='.$Mid;
+        $gh=file_get_contents($ret);
+        }else{
+            $ret=$ret.'&text=err!&reply_to_message_id='.$Mid;
+            $gh=file_get_contents($ret)
+        }
+    
    }
 }
  
