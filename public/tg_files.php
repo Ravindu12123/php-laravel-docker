@@ -21,7 +21,7 @@ if($M['video']==null){
        }else{
        $rett=$rett.'&video='.$M['video']['file_id'];
        $nb= file_get_contents($rett);
-        $nbr=json_decode($nb);
+        $nbr=json_decode($nb,true);
         if($nbr['ok']==true){
         array_push($donefj['file_ids'],$M['video']['file_id']);
        $donejj=json_encode($donefj);
