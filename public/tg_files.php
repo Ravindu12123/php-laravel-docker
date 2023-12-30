@@ -4,8 +4,8 @@
   $dats=file_get_contents($dataj);
   $donefj=json_decode($dats,true);
   $j=json_decode($in,true);
-  $cc='-1002099678281';//channel id
-  $botToken='6906959412:AAFd2yMD7h6kDIUDSy7JkFOqKCYPeYtruxU';//bot token
+  $cc='-1002099678281';
+  $botToken='6906959412:AAFd2yMD7h6kDIUDSy7JkFOqKCYPeYtruxU';
   $M=$j['message'];$Uid=$M['from']['id'];
   $Mid=$M['message_id'];
    $ret='https://api.telegram.org/bot'.$botToken.'/sendMessage?chat_id='.$Uid.'&parse_mode=html';
