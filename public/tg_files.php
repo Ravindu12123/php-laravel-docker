@@ -1,7 +1,7 @@
 <?php
   $in=file_get_contents("php://input");
   $dataj='done_f.json';
-  sleep(20);
+  sleep(3);
   $dats=file_get_contents($dataj);
   $donefj=json_decode($dats,true);
   $j=json_decode($in,true);
