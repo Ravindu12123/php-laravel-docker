@@ -53,7 +53,7 @@ $headers = [
 
 $fields = [
     'chat_id'=>$_GET['id'],
-    'video' => new CURLFile($file, 'image/png'),
+    'video' => new CURLFile($file, 'video/mp4'),
 ];
 
 $ch = curl_init();
