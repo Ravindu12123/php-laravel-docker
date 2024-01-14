@@ -1,6 +1,6 @@
 <?php
-$e1=echo $_ENV['MY_VAR'];
-$e2=echo getenv('MY_VAR'); 
+$e1=$_ENV['MY_VAR'];
+$e2=getenv('MY_VAR'); 
 if($e1==null){
 echo "1nulll";
 }else{
