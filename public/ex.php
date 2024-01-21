@@ -20,7 +20,7 @@ if(isset($_GET['file'])) {
     echo 1;
 }else if(isset($_GET['tgf'])){
     $n=$_GET['tgf'];
-    $nul='https://api.telegram.org/bot'.urlencode($_GET['token'].'/sendVideo?chat_id='.$_GET['chat_id'].'&parse_mode=html&video=https://phpttesrr.onrender.com/'.$n);
+    $nul='https://api.telegram.org/bot'.urlencode($_GET['token'].'/sendVideo?chat_id='.$_GET['chat_id'].'&parse_mode=html&video=)https://phpttesrr.onrender.com/'.urlencode($n);
     if(isset($_GET['caption'])){
       $nul=$nul.urlencode('&caption='.$_GET['caption']);
     }
