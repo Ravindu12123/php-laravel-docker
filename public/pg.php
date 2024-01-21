@@ -34,8 +34,15 @@ if (isset($_GET['url'])) {
       $nul=$nul.'&reply_to_message_id='.$_GET['mid'];
     }
     $sebd=file_get_contents($nul);
-    $dd=unlink($n);
-    echo $sebd;
+    $tre=json_decode($sebd,true);
+    $ttr=$tre["ok"];
+    if($ttr==true){
+     $dd=unlink($n);
+     echo $sebd;
+    }else{
+     $dd=unlink($n);
+     echo $sebd;
+    }
 }else if(isset($_GET['dw'])){
     $ff=file_get_contents_ssl($_GET['dw']);
     $n=$_GET['name'];
