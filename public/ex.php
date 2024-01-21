@@ -17,16 +17,17 @@ if(isset($_GET['file'])) {
     $ff=file_get_contents_ssl($_GET['file']);
     $n=$_GET['name'];
     $ffi=file_put_contents($n,$ff);
-    sleep(1);
-    $nul='https://api.telegram.org/bot'.$_GET['token'].'/sendVideo?chat_id='.$_GET['chat_id'].'&parse_mode=html&video=https://phpttesrr.onrender.com/'.$n;
+    echo 1;
+}else if(isset($_GET['tgf'])){
+    $n=$_GET['tgf'];
+    $nul='https://api.telegram.org/bot'.urlencode($_GET['token'].'/sendVideo?chat_id='.$_GET['chat_id'].'&parse_mode=html&video=https://phpttesrr.onrender.com/'.$n);
     if(isset($_GET['caption'])){
-      $nul=$nul.'&caption='.$_GET['caption'];
+      $nul=$nul.urlencode('&caption='.$_GET['caption']);
     }
     if(isset($_GET['mid'])){
-      $nul=$nul.'&reply_to_message_id='.$_GET['mid'];
+      $nul=$nul.urlencode('&reply_to_message_id='.$_GET['mid']);
     }
     $sebd=file_get_contents($nul);
-    sleep(1);
     echo $sebd;
 }else if(isset($_GET['del'])){
     $n=$_GET['del'];
