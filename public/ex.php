@@ -13,6 +13,23 @@ function file_get_contents_ssl($url) {
     curl_close($ch);
     return $result;
 }
+function postr($url,$data){   
+$content = json_encode($data);
+
+$curl = curl_init($url);
+curl_setopt($curl, CURLOPT_HEADER, false);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-type: application/json"));
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
+
+$json_response = curl_exec($curl);
+
+$status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+curl_close($curl);
+    return $json_response;
+}
 if(isset($_GET['file'])) {
     $ff=file_get_contents_ssl($_GET['file']);
     $n=$_GET['name'];
@@ -20,15 +37,18 @@ if(isset($_GET['file'])) {
     echo 1;
 }else if(isset($_GET['tgf'])){
     $n=$_GET['tgf'];
-    $nul='https://api.telegram.org/bot'.urlencode($_GET['token'].'/sendVideo?chat_id='.$_GET['chat_id'].'&parse_mode=html&video=)https://phpttesrr.onrender.com/'.urlencode($n);
+    $cap=null;
     if(isset($_GET['caption'])){
-      $nul=$nul.urlencode('&caption='.$_GET['caption']);
+      $cap=$_GET['caption'];
     }
-    if(isset($_GET['mid'])){
-      $nul=$nul.urlencode('&reply_to_message_id='.$_GET['mid']);
-    }
-    $sebd=file_get_contents($nul);
-    echo $sebd;
+    $ret=postr('https://api.telegram.org/bot'.$_GET['token'].'/sendVideo',
+               array(
+                   'chat_id' => $_GET['chat_id'],
+                   'parse_mode' => 'html',
+                   'video' => 'https://phpttesrr.onrender.com/'.$n,
+                   'caption' => $cap
+                   ));
+    echo $ret;
 }else if(isset($_GET['del'])){
     $n=$_GET['del'];
     $dd=unlink($n);
