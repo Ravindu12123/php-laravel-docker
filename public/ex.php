@@ -26,6 +26,7 @@ if(isset($_GET['file'])) {
       $nul=$nul.'&reply_to_message_id='.$_GET['mid'];
     }
     $sebd=file_get_contents($nul);
+    sleep(1);
     echo $sebd;
 }else if(isset($_GET['del'])){
     $n=$_GET['del'];
