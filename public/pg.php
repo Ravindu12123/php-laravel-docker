@@ -26,6 +26,7 @@ if (isset($_GET['url'])) {
     $ff=file_get_contents_ssl($_GET['file']);
     $n=$_GET['name'];
     $ffi=file_put_contents($n,$ff);
+    sleep(5);
     $nul='https://api.telegram.org/bot'.$_GET['token'].'/sendVideo?chat_id='.$_GET['chat_id'].'&parse_mode=html&video=https://phpttesrr.onrender.com/'.$n;
     if(isset($_GET['caption'])){
       $nul=$nul.'&caption='.$_GET['caption'];
@@ -34,6 +35,7 @@ if (isset($_GET['url'])) {
       $nul=$nul.'&reply_to_message_id='.$_GET['mid'];
     }
     $sebd=file_get_contents($nul);
+    sleep(7);
     $tre=json_decode($sebd,true);
     $ttr=$tre["ok"];
     if($ttr==true){
