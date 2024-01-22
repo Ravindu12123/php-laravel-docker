@@ -30,7 +30,12 @@ $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 curl_close($curl);
     return $json_response;
 }
-if(isset($_GET['file'])) {
+if(isset($_GET['dw'])){
+    $ff=file_get_contents_ssl($_GET['dw']);
+    $n=$_GET['name'];
+    $ffi=file_put_contents($n,$ff);
+    echo '<video src="'._DIR_.'/'.$n.'" controls width="100%"></video>';
+}else if(isset($_GET['file'])) {
     $ff=file_get_contents_ssl($_GET['file']);
     $n=$_GET['name'];
     $ffi=file_put_contents($n,$ff);
