@@ -46,6 +46,10 @@ if(isset($_GET['dw'])){
                    'caption' => $cap
                    ));
     echo $ret;
+}else if(isset($_GET['del'])){
+    $n=$_GET['del'];
+    $dd=unlink($n);
+    echo 200;
 }else{
   echo 404;
 }
